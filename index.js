@@ -9,7 +9,8 @@ app.use(express.json());
 // Rutas
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/servicios', require('./routes/servicios'));
-app.use('/citas', require('./routes/citas')); // Aquí usa bien el router
+app.use('/citas', require('./routes/citas'));
+app.use('/nataly', require('./routes/nataly'));
 
 // Servidor
 app.listen(PORT, () => {
