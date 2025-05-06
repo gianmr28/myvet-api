@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db');
 
-// Obtener todos los usuarios
-router.get('/', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM usuario');
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// Aquí irían tus rutas, por ejemplo:
+router.get('/', (req, res) => {
+  res.json({ message: 'Ruta de servicios está funcionando correctamente' });
 });
+
+// Exportar el router para usarlo en index.js
+module.exports = router;
