@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/usuarios', require('./routes/usuarios'));
-app.use('/servicios', require('./routes/servicios')); // Aquí usa bien el router
+app.use('/servicios', require('./routes/servicios'));
 app.use('/citas', require('./routes/citas')); // Aquí usa bien el router
 
 // Servidor
