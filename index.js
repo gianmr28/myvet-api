@@ -10,6 +10,7 @@ app.use(express.json());
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/servicios', require('./routes/servicios'));
 app.use('/citas', require('./routes/citas'));
+app.use('/hola', require('./routes/hola'));
 
 // Servidor
 app.listen(PORT, () => {
