@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
+// Obtener todas las citas por idusuario
+router.get('/usuario/:idusuario', async (req, res) => {
+    const { idusuario } = req.params;
+    try {
+      const result = await pool.query('SELECT * FROM cita WHERE idusuario = $1', [idusuario]);
+      if (result.rows.length > 0) {
+        res.json(result.rows);
+      } else {
+        res.status(404).json({ message: 'No se encontraron citas para este usuario' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
 // Obtener todas las citas
 router.get('/', async (req, res) => {
   try {
