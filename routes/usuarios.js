@@ -75,4 +75,29 @@ router.delete('/:idusuario', async (req, res) => {
   }
 });
 
+// Endpoint para login
+router.post('/login', async (req, res) => {
+  const { correo, contrasena } = req.body;
+
+  if (!correo || !contrasena) {
+    return res.status(400).json({ error: 'Correo y contraseña son requeridos' });
+  }
+
+  try {
+    const result = await pool.query(
+      'SELECT * FROM usuario WHERE correo = $1 AND contrasena = $2',
+      [correo, contrasena]
+    );
+
+    if (result.rows.length > 0) {
+      res.json({ message: 'Inicio de sesión exitoso', usuario: result.rows[0] });
+    } else {
+      res.status(401).json({ error: 'Correo o contraseña incorrectos' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 module.exports = router;
